@@ -113,6 +113,24 @@ h2 {
     font-size: 1.2em;
 }
 
+
+.social-media {
+    text-align: center;
+}
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Adjust spacing between icons */
+}
+.social-icon {
+    font-size: 24px; /* Adjust icon size */
+    color: #000; /* Change color as needed */
+    text-decoration: none; /* Remove underline */
+}
+.social-icon:hover {
+    color: #007bff; /* Change color on hover */
+}
+
 .join-button {
     background: #ff9800; /* Orange join button */
     color: #fff;
