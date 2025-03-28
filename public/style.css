@@ -1,0 +1,153 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e0eafc, #68a3fa); /* Lighter blue gradient */
+    color: #333; /* Darker text for readability */
+    line-height: 1.6;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.8); /* Light, semi-transparent header */
+    text-align: center;
+    padding: 2em 0;
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.logo {
+    max-width: 120px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    color: #007bff; /* Primary blue for headings */
+}
+
+p {
+    font-size: 1.1em;
+    opacity: 0.8;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8); /* Light, semi-transparent container */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    color: #ff9800; /* Orange for section headings */
+    border-bottom: 2px solid #ff9800;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.carousel {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.carousel-item img {
+    max-width: 100%; /* Ensure images don't exceed container width */
+    max-height: 300px; /* Set a maximum height */
+    width: auto; /* Allow images to maintain their aspect ratio */
+    height: auto;
+    object-fit: contain; /* Ensure the whole image is visible */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    color: #fff;
+    border-radius: 0 0 12px 12px;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.carousel-controls button {
+    background: rgba(0, 123, 255, 0.6); /* Blue button background */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 1.2em;
+}
+
+.join-button {
+    background: #ff9800; /* Orange join button */
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    transition: background 0.3s ease;
+}
+
+.join-button:hover {
+    background: #f57c00; /* Darker orange on hover */
+}
+
+.youtube-video{
+    width: 80%;
+    margin: 20px auto;
+}
+
+.youtube-video iframe{
+    width:100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    h1{
+        font-size: 2em;
+    }
+}
