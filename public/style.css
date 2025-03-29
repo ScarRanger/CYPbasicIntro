@@ -192,3 +192,37 @@ h2 {
     margin-right: 10px; 
     font-size: 20px; 
 }
+
+
+.ice-breaker-container {
+    text-align: center;
+}
+
+#timedButtonContainer {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 25px;
+    border: 2px solid #ccc; /* Add a border for visual indication */
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+#timedButtonContainer i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+#timedButtonContainer.unlocked {
+    border: none;
+    background-color: #ffb300; /* Use your button color */
+    color: white;
+    cursor: pointer;
+}
+
+#timedButtonContainer.unlocked i {
+    display: none; /* Hide the lock icon when unlocked */
+}
+
+#timedButtonContainer.unlocked span {
+    display: none; /* Hide the "Locked" text when unlocked */
+}

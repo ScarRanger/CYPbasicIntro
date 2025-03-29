@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Youth in Power</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/images/CYP logobg.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e0eafc, #68a3fa); /* Lighter blue gradient */
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.8); /* Light, semi-transparent header */
+    text-align: center;
+    padding: 2em 0;
+}
+
+.logo {
+    max-width: 120px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    color: #007bff; /* Primary blue for headings */
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8); /* Light, semi-transparent container */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #ff9800; /* Orange for section headings */
+    border-bottom: 2px solid #ff9800;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#verse-container {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+#verse-text {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 500;
+}
+
+#verse-reference {
+    font-style: italic;
+    color: #777;
+    font-size: 1em;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+}
+</style>
+
+</head>
+<body>
+    <header>
+        <img src="/images/CYP logo.png" alt="CYP logo" class="logo">
+        <h1>Christian Youth in Power</h1>
+    </header>
+
+    <div class="container">
+        <h2>Ice Breaker</h2> 
+        <div id="verse-container">
+            <div id="verse-text"></div>
+            <div id="verse-reference"></div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchVerses() {
+    try {
+        const response = await fetch('verses.json');
+        if (!response.ok) throw new Error('Failed to load verses');
+
+        const verses = await response.json();
+        displayVerseOfTheDay(verses);
+    } catch (error) {
+        console.error('Error fetching verses:', error);
+    }
+}
+
+function displayVerseOfTheDay(verses) {
+    let userId = localStorage.getItem('userId');
+
+    if (!userId) {
+        userId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem('userId', userId);
+    }
+
+    let seed = 0;
+    for (let i = 0; i < userId.length; i++) {
+        seed = (seed + userId.charCodeAt(i)) % 1000;
+    }
+
+    const randomIndex = seed % verses.length;
+    const verse = verses[randomIndex];
+
+    document.getElementById('verse-text').textContent = verse.text;
+    document.getElementById('verse-reference').textContent = verse.reference;
+}
+
+// Fetch and display the verse after the page loads
+window.onload = fetchVerses;
+
+    </script>
+</body>
+</html>
