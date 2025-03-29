@@ -1,0 +1,82 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e0eafc, #68a3fa);
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 2em 0;
+}
+
+.logo {
+    max-width: 120px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    color: #007bff;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #ff9800;
+    border-bottom: 2px solid #ff9800;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.social-button {
+    display: block;
+    margin: 20px auto;
+    padding: 15px 25px;
+    border: none;
+    background-color: #ffb300;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+}
+
+.result-container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+#heroImage {
+    max-width: 200px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#heroResultContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

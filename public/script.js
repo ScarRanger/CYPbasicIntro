@@ -18,33 +18,41 @@ function prevSlide() {
 
 setInterval(nextSlide, 5000);
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Bible Verses Time (Specific time in IST)
+    const bibleVersesUnlockTime = new Date('2024-03-30T10:00:00+05:30').getTime(); // Example: 10:00 AM IST
 
-function icebreakerUnlock() {
-    const targetDateIST = new Date('2025-03-31T10:30:00+05:30');
-    const targetTimeIST = targetDateIST.getTime();
+    // Bible Heroes Time (Specific time in IST)
+    const bibleHeroesUnlockTime = new Date('2024-03-30T12:00:00+05:30').getTime(); // Example: 12:00 PM IST
 
-    function checkTimeAndUnlock() {
-        const nowUTC = Date.now();
-        const nowIST = new Date(nowUTC).toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
-        const nowISTTimestamp = new Date(nowIST).getTime();
+    function checkTimeAndUnlock(buttonId, unlockTime, unlockedText, unlockedAction) {
+        function check() {
+            const now = Date.now();
+            const nowIST = now + (330 * 60 * 1000); // Convert to IST
 
-        if (nowISTTimestamp >= targetTimeIST) {
-            const container = document.getElementById('timedButtonContainer');
-            if (container) {
-                container.classList.add('unlocked');
-                container.innerHTML = 'Click Me!';
-                container.onclick = function () {
-                    window.location.href = "verse.html"
-                }
+            const button = document.getElementById(buttonId);
+
+            if (nowIST >= unlockTime) {
+                button.classList.remove('locked');
+                button.innerHTML = unlockedText;
+                button.onclick = unlockedAction;
+            } else {
+                setTimeout(check, 1000); // Check every second
             }
-        } else {
-            setTimeout(checkTimeAndUnlock, 1000); // Check every second
         }
+        check();
     }
 
-    // Start the time check immediately
-    checkTimeAndUnlock();
-}
+    // Functions for button actions
+    function unlockBibleVerses() {
+        window.location.href = "verse.html";
+    }
 
-// Call icebreakerUnlock() after the page has loaded
-window.onload = icebreakerUnlock;
+    function unlockBibleHeroes() {
+        window.location.href = "biblehero/index.html";
+    }
+
+    // Initialize time checks
+    checkTimeAndUnlock('bibleVersesButton', bibleVersesUnlockTime, 'Bible Verses', unlockBibleVerses);
+    checkTimeAndUnlock('bibleHeroesButton', bibleHeroesUnlockTime, 'Bible Heroes', unlockBibleHeroes);
+});
