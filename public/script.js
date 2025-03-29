@@ -20,7 +20,7 @@ setInterval(nextSlide, 5000);
 
 
 function icebreakerUnlock() {
-    const targetDateIST = new Date('2025-03-29T16:00:00+05:30');
+    const targetDateIST = new Date('2025-03-31T10:30:00+05:30');
     const targetTimeIST = targetDateIST.getTime();
 
     function checkTimeAndUnlock() {
