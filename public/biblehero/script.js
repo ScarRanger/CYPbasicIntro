@@ -16,6 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
+
+        if (!areAllQuestionsAnswered()) {
+            alert('Please answer all questions before submitting.');
+            return;
+        }
+
         const answers = {};
         for (let i = 1; i <= 10; i++) {
             answers[`q${i}`] = document.querySelector(`input[name="q${i}"]:checked`)?.value;
@@ -31,22 +37,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (counts.A > counts.B && counts.A > counts.C && counts.A > counts.D) {
             resultText = "You are DAVID (The Fearless Warrior)!";
-            imageSrc = "images/david.jpg"; // Replace with your image path
+            imageSrc = "images/david.jpg";
         } else if (counts.B > counts.A && counts.B > counts.C && counts.B > counts.D) {
             resultText = "You are SOLOMON (The Wise King)!";
-            imageSrc = "images/solomon.jpeg"; // Replace with your image path
+            imageSrc = "images/solomon.jpeg";
         } else if (counts.C > counts.A && counts.C > counts.B && counts.C > counts.D) {
             resultText = "You are ELIJAH (The Fiery Prophet)!";
-            imageSrc = "images/elijha.jpg"; // Replace with your image path
+            imageSrc = "images/elijha.jpg";
         } else if (counts.D > counts.A && counts.D > counts.B && counts.D > counts.C) {
             resultText = "You are JOSEPH (The Faithful Dreamer)!";
-            imageSrc = "images/joseph.jpg"; // Replace with your image path
+            imageSrc = "images/joseph.jpg";
         } else if (counts.A + counts.C > counts.B + counts.D) {
             resultText = "You are SAMSON (The Strong Champion)!";
-            imageSrc = "images/samson.webp"; // Replace with your image path
+            imageSrc = "images/samson.webp";
         } else {
             resultText = "You are MOSES (The Faithful Leader)!";
-            imageSrc = "images/moses.jpg"; // Replace with your image path
+            imageSrc = "images/moses.jpg";
         }
 
         heroResultText.textContent = resultText;
@@ -58,4 +64,13 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('quizResultText', resultText);
         localStorage.setItem('heroImageSrc', imageSrc);
     });
+
+    function areAllQuestionsAnswered() {
+        for (let i = 1; i <= 10; i++) {
+            if (!document.querySelector(`input[name="q${i}"]:checked`)) {
+                return false;
+            }
+        }
+        return true;
+    }
 });

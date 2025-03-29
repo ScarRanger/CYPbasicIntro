@@ -19,10 +19,8 @@ function prevSlide() {
 setInterval(nextSlide, 5000);
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Bible Verses Time (Specific time in IST)
     const bibleVersesUnlockTime = new Date('2024-03-30T10:00:00+05:30').getTime(); // Example: 10:00 AM IST
 
-    // Bible Heroes Time (Specific time in IST)
     const bibleHeroesUnlockTime = new Date('2024-03-30T12:00:00+05:30').getTime(); // Example: 12:00 PM IST
 
     function checkTimeAndUnlock(buttonId, unlockTime, unlockedText, unlockedAction) {
@@ -43,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
         check();
     }
 
-    // Functions for button actions
     function unlockBibleVerses() {
         window.location.href = "verse.html";
     }
