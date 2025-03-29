@@ -169,3 +169,26 @@ h2 {
         font-size: 2em;
     }
 }
+
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+}
+
+.social-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 25px; 
+    border: none;
+    background-color: #ffb300; 
+    cursor: pointer;
+    border-radius: 8px; 
+    font-size: 16px; 
+}
+
+.social-button i {
+    margin-right: 10px; 
+    font-size: 20px; 
+}
