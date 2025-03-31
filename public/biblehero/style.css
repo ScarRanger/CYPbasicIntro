@@ -47,6 +47,19 @@ h2 {
     margin-bottom: 20px;
 }
 
+
+.feedback-container {
+    width: 100%; /* Ensure full width */
+    text-align: center; /* Ensures it spans the full width */
+}
+
+.feedback-button {
+    padding: 10px 20px;
+    background-color: orange;
+    border: none;
+    cursor: pointer;
+}
+
 .social-button {
     display: block;
     margin: 20px auto;
