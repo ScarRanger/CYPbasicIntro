@@ -19,9 +19,9 @@ function prevSlide() {
 setInterval(nextSlide, 5000);
 
 document.addEventListener('DOMContentLoaded', function() {
-    const bibleVersesUnlockTime = new Date('2024-03-30T10:00:00+05:30').getTime(); // Example: 10:00 AM IST
+    const bibleVersesUnlockTime = new Date('2024-03-31T10:45:00+05:30').getTime(); // Example: 10:00 AM IST
 
-    const bibleHeroesUnlockTime = new Date('2024-03-30T12:00:00+05:30').getTime(); // Example: 12:00 PM IST
+    const bibleHeroesUnlockTime = new Date('2024-03-31T10:45:00+05:30').getTime(); // Example: 12:00 PM IST
 
     function checkTimeAndUnlock(buttonId, unlockTime, unlockedText, unlockedAction) {
         function check() {
