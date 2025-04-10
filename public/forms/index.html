@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Youth in Power</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/home/images/CYP logobg.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <img src="/home/images/CYP logo.png" alt="CYP logo" class="logo">
+        <h1>Christian Youth in Power</h1>
+    </header>
+
+    <div class="container">
+        <div class="general-form-container">
+            <h2></h2>
+            <form id="generalForm" enctype="multipart/form-data">
+                <form id="generalForm" enctype="multipart/form-data">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="Email" required>
+                
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="Full Name" required>
+                
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="Gender" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="Age" required>
+                
+                    <label for="cypduration">How long have you been in CYP?</label>
+                    <input type="text" id="cypduration" name="How long have you been in CYP?" required>
+                
+                    <label for="number">Your Contact Number:</label>
+                    <input type="number" id="number" name="Your Contact Number" required>
+                
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="Date of Birth" required>
+                
+                    <label for="parentnum">Parent's Contact Number:</label>
+                    <input type="number" id="parentnum" name="Parent's Contact Number" required>
+                
+                    <label for="parish">Your Parish:</label>
+                    <input type="text" id="parish" name="Your Parish" required>
+                
+                    <label for="category">Which category do you belong to?</label>
+                    <select id="category" name="Which category do you belong to?" required>
+                        <option value="">Select</option>
+                        <option>Commited CYP member</option>
+                        <option>Community member</option>
+                        <option>First Timer</option>
+                        <option>Non committed CYP member</option>
+                        <option>Young Professionals member</option>
+                    </select>
+                
+                    <label for="actiongrp">Action Group:</label>
+                    <select id="actiongrp" name="Action Group" required>
+                        <option value="">Select</option>
+                        <option>David's Brigade</option>
+                        <option>Noah's Ark</option>
+                        <option>Peter's catch</option>
+                        <option>Gideon's army</option>
+                        <option>Thriving Thomas</option>
+                    </select>
+                
+                    <label for="allergies">Any Allergies or Sickness? (If not, mention NA)</label>
+                    <input type="text" id="allergies" name="Any Allergies or Sickness?" required>
+                
+                    <label for="image">Upload a Screenshot of Payment:</label>
+                    <input type="file" id="image" name="Upload a Screenshot of Payment" accept="image/*" required>
+                
+                    <label>
+                        <input type="checkbox" name="Rules Acknowledgement" required>
+                        I have read all the instructions carefully and promise to follow rules and show obedience.
+                    </label>
+                
+                    <button type="submit">Submit</button>
+                </form>
+                
+
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
