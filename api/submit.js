@@ -3,18 +3,19 @@ const multer = require("multer");
 const fs = require("fs");
 const { google } = require("googleapis");
 const path = require("path");
+const dorenv = require("dotenv").config();
+
 const router = express.Router();
 
 const SPREADSHEET_ID = process.env.SHEET_ID;
 const FOLDER_ID = process.env.DRIVE_FOLDER_ID;
 
 const auth = new google.auth.OAuth2();
-auth.setCredentials(JSON.parse(fs.readFileSync("token.json")));
+auth.setCredentials(JSON.parse(fs.readFileSync(path.join(__dirname, "token.json"))));
 
 const sheets = google.sheets({ version: "v4", auth });
 const drive = google.drive({ version: "v3", auth });
 
-// Multer setup for image upload
 const upload = multer({ dest: "uploads/" });
 
 router.post("/", upload.single("Upload a Screenshot of Payment"), async (req, res) => {
@@ -37,10 +38,9 @@ router.post("/", upload.single("Upload a Screenshot of Payment"), async (req, re
 
         const gender = Gender?.toLowerCase();
 
-        // ✅ Gender-based seat availability check
         const readRes = await sheets.spreadsheets.values.get({
             spreadsheetId: SPREADSHEET_ID,
-            range: "main!C2:C", // Gender column
+            range: "main!C2:C",
         });
         const rows = readRes.data.values || [];
         const males = rows.filter(row => row[0]?.toLowerCase() === "male").length;
@@ -50,7 +50,6 @@ router.post("/", upload.single("Upload a Screenshot of Payment"), async (req, re
             return res.status(400).json({ success: false, error: `No seats left for ${Gender}` });
         }
 
-        // ✅ Upload image to Google Drive
         const fileMetadata = {
             name: req.file.originalname,
             parents: [FOLDER_ID],
@@ -76,10 +75,8 @@ router.post("/", upload.single("Upload a Screenshot of Payment"), async (req, re
 
         const imageUrl = `https://drive.google.com/uc?id=${driveFile.data.id}`;
 
-        // ✅ Timestamp in IST
         const timestamp = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
 
-        // ✅ Prepare data row for sheet
         const values = [
             [
                 timestamp,
@@ -109,7 +106,6 @@ router.post("/", upload.single("Upload a Screenshot of Payment"), async (req, re
             },
         });
 
-        // ✅ Remove temp uploaded file
         fs.unlinkSync(req.file.path);
 
         res.json({ success: true, message: "Form submitted successfully." });
@@ -120,4 +116,8 @@ router.post("/", upload.single("Upload a Screenshot of Payment"), async (req, re
     }
 });
 
-module.exports = router;
+const app = express();
+app.use(express.json());
+app.use("/", upload.single("Upload a Screenshot of Payment"), router);
+
+module.exports = app;

@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("generalForm");
     const submitBtn = form.querySelector("button[type='submit']");
     const contactField = document.getElementById("number");
+    const parentContactField = document.getElementById("parentnum");
     const ageField = document.getElementById("age");
     const emailField = document.getElementById("email");
 
@@ -16,27 +17,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const contactMsg = createErrorSpan(contactField);
+    const parentContactMsg = createErrorSpan(parentContactField);
     const ageMsg = createErrorSpan(ageField);
     const emailMsg = createErrorSpan(emailField);
 
     let contactValid = false;
+    let parentContactValid = false;
     let ageValid = false;
     let emailValid = false;
 
     function checkFormValidity() {
-        if (contactValid && ageValid && emailValid) {
-            submitBtn.disabled = false;
-        } else {
-            submitBtn.disabled = true;
-        }
+        submitBtn.disabled = !(contactValid && parentContactValid && ageValid && emailValid);
     }
 
-    // Phone number validation
+    // Phone number validation function
+    function validatePhoneNumber(value) {
+        return /^\d{10}$/.test(value) || (/^0\d{10}$/.test(value) && value.length === 11);
+    }
+
+    // Contact validation
     contactField.addEventListener("input", () => {
         const value = contactField.value.trim();
-        contactValid = /^\d{10}$/.test(value) || (/^0\d{10}$/.test(value) && value.length === 11);
+        contactValid = validatePhoneNumber(value);
         contactField.style.border = contactValid ? "2px solid green" : "2px solid red";
-        contactMsg.textContent = contactValid ? "" : "Invalid number (must be 10 digits or 11 starting with 0)";
+        contactMsg.textContent = contactValid ? "" : "Invalid number (10 digits)";
+        checkFormValidity();
+    });
+
+    // Parent contact validation
+    parentContactField.addEventListener("input", () => {
+        const value = parentContactField.value.trim();
+        parentContactValid = validatePhoneNumber(value);
+        parentContactField.style.border = parentContactValid ? "2px solid green" : "2px solid red";
+        parentContactMsg.textContent = parentContactValid ? "" : "Invalid number (10 digits)";
         checkFormValidity();
     });
 
@@ -62,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.disabled = true;
 
     // Seat check
-    fetch("http://localhost:3000/availability")
+    fetch("/api/availability")
         .then(res => res.json())
         .then(data => {
             window.remainingMale = data.remainingMale;
@@ -87,17 +100,22 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        if (!(contactValid && parentContactValid && ageValid && emailValid)) {
+            alert("❌ Please fix the highlighted fields before submitting.");
+            return;
+        }
+
         submitBtn.disabled = true;
         submitBtn.innerText = "Submitting...";
 
         try {
-            const res = await fetch("/submit", {
+            const res = await fetch("/api/submit", {
                 method: "POST",
                 body: formData,
             });
 
             if (res.ok) {
-                window.location.href = "success.html"; // ✅ redirect to success page
+                window.location.href = "success.html"; // ✅ Redirect to success page
             } else {
                 const result = await res.json();
                 alert(`❌ Error: ${result.error || "Submission failed."}`);
